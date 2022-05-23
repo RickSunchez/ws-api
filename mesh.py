@@ -6,27 +6,7 @@ db = LocalDB("local_database.db")
 # db.drop()
 # exit()
 
-# db.newServiceKey("wsr-aaa-bbb")
-
-# db.CreateUser("Имя", "Фамилия", "email", "пароль")
-# print(db.GetUser(1))
-# print(db.GetTableHeaders("users"))
-
-# print(db.getNewsFiles(6))
-
-# db.createNews(1, "Заголовок1", "Описание1", ["file1", "file2"])
-# db.createNews(1, "Заголовок2", "Описание2", ["file3", "file4"])
-# db.createNews(1, "Заголовок3", "Описание3", ["file5", "file6"])
-# db.createNews(1, "Заголовок4", "Описание4", ["file7", "file8"])
-# db.createNews(1, "Заголовок5", "Описание5", ["file9", "file0"])
-
-# db.createItem("Товар1", "Описание1", 123,  ["litem1", "ritem1"])
-# db.createItem("Товар2", "Описание2", 1234, ["litem2", "ritem2"])
-# db.createItem("Товар3", "Описание3", 22,   ["litem3", "ritem3"])
-# db.createItem("Товар4", "Описание4", 15,   ["litem4", "ritem4"])
-# db.createItem("Товар5", "Описание5", 4141, ["litem5", "ritem5"])
-
-with open("mesh/items.json") as f:
+with open("mesh/items.json", "r", encoding="utf-8") as f:
     items = json.loads(f.read())
 
 for item in items:
@@ -37,7 +17,7 @@ for item in items:
         [item["file"]]
     )
 
-with open("mesh/news.json") as f:
+with open("mesh/news.json", "r", encoding="utf-8") as f:
     news = json.loads(f.read())
 
 for n in news:
@@ -48,7 +28,7 @@ for n in news:
         [n["file"]]
     )
 
-with open("mesh/users.json") as f:
+with open("mesh/users.json", "r", encoding="utf-8") as f:
     users = json.loads(f.read())
 
 for user in users:

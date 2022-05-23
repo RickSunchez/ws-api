@@ -137,10 +137,7 @@ class Queries:
 
         expiresIn = date.strftime("%Y-%m-%d %H:%M:%S")
 
-        token = hashlib.sha256(
-            bytearray(
-                expiresIn + str(random.randint(1, 999)), 
-                "utf8")).hexdigest()
+        token = secrets.token_hex(nbytes=8)
 
         return """
             INSERT INTO sessions (user_id, session_token, expires_in)

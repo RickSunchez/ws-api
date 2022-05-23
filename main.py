@@ -1,12 +1,21 @@
 from typing import List, Union
 import hashlib
 from fastapi import FastAPI, Query, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 import localRequests as lr
 from db_connectors import LocalDB
 
 app = FastAPI()
 db = LocalDB("local_database.db")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/service", response_model=lr.Answer)
 async def serviceKey(api_id:str):

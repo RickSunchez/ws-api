@@ -5,6 +5,9 @@ from sqlQuery import *
 # fix errors message
 # check all responses
 
+NEWS_FILES_FOLDER = "images/items_img/"
+ITEMS_FILES_FOLDER = "images/news_img/"
+
 class LocalDB:
     # DB methods
     def __init__(self, filename:str):
@@ -275,11 +278,16 @@ class LocalDB:
         answer, err = self.sql(Queries.SELECTfilesFromTable(table_name, obj_id))
         if err != False: return None, err
 
+        preDir = {
+            "news_files": NEWS_FILES_FOLDER,
+            "items_files": ITEMS_FILES_FOLDER
+        }
+
         out = []
         for row in answer:
             filename, err = self.sql(Queries.SELECTfilename(row[0]))
             if err != False: return None, err
-            out.append(filename[0][0])
+            out.append(preDir[table_name] + filename[0][0])
 
         return out, False
 
